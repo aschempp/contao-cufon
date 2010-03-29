@@ -37,7 +37,7 @@ $GLOBALS['TL_DCA']['tl_style']['list']['sorting']['child_record_callback'] = arr
  */
 $GLOBALS['TL_DCA']['tl_style']['palettes']['__selector__'][]	= 'cufon';
 $GLOBALS['TL_DCA']['tl_style']['palettes']['default']			= str_replace(';{list_legend}', ',cufon;{list_legend}', $GLOBALS['TL_DCA']['tl_style']['palettes']['default']);
-$GLOBALS['TL_DCA']['tl_style']['subpalettes']['cufon']			= 'cufon_font,cufon_fontFamily';
+$GLOBALS['TL_DCA']['tl_style']['subpalettes']['cufon']			= 'cufon_font,cufon_fontFamily,cufon_hover';
 
 
 /**
@@ -63,3 +63,11 @@ $GLOBALS['TL_DCA']['tl_style']['fields']['cufon_fontFamily'] = array
 	'inputType'			=> 'text',
 	'eval'				=> array('maxlength'=>255, 'tl_class'=>'w50'),
 );
+
+$GLOBALS['TL_DCA']['tl_style']['fields']['cufon_hover'] = array
+(
+	'label'				=> &$GLOBALS['TL_LANG']['tl_style']['cufon_hover'],
+	'inputType'			=> 'text',
+	'eval'				=> array('maxlength'=>255, 'tl_class'=>'w50'),
+);
+

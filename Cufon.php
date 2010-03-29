@@ -29,7 +29,7 @@
 class Cufon extends Frontend
 {
 	
-	public function injectStyles($objPage, $objLayout, $objPageRegular)
+	public function injectStyles($objPage, &$objLayout, $objPageRegular)
 	{
 		$arrStylesheets = deserialize($objLayout->stylesheet);
 		
@@ -45,7 +45,25 @@ class Cufon extends Frontend
 					$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/cufon/html/cufon.js';
 					$GLOBALS['TL_JAVASCRIPT'][] = $objStyles->cufon_font;
 					
-					$arrStyles[] = "Cufon.replace('" . $objStyles->selector . "'" . (strlen($objStyles->cufon_fontFamily) ? (", { fontFamily: '" . $objStyles->cufon_fontFamily . "' }") : '') . ")";
+					$arrOptions = array();
+					
+					if (strlen($objStyles->cufon_fontFamily))
+					{
+						$arrOptions[] = "fontFamily: '" . $objStyles->cufon_fontFamily . "'";
+					}
+					
+					if (strlen($objStyles->cufon_hover))
+					{
+						$arrOptions[] = 'hover: true';
+						$arrElements = array_diff(trimsplit(',', $objStyles->cufon_hover), array('', 'a'));
+						
+						if (count($arrElements))
+						{
+							$arrOptions[] = 'hoverables: { ' . implode(': true, ', $arrElements) . ': true }';
+						}
+					}
+					
+					$arrStyles[] = "Cufon.replace('" . $objStyles->selector . "'" . (count($arrOptions) ? ', {'.implode(', ', $arrOptions).'}' : '') . ")";
 				}
 			}
 			
@@ -53,15 +71,13 @@ class Cufon extends Frontend
 			{
 				$GLOBALS['TL_HEAD'][] = '<script type="text/javascript">
 <!--//--><![CDATA[//><!--
-	' . implode("\n\t", $arrStyles) . ';
+' . implode("\n", $arrStyles) . ';
 //--><!]]>
 </script>';
 				
-				$GLOBALS['TL_MOOTOOLS'][] = '<script type="text/javascript">
-<!--//--><![CDATA[//><!--
-	Cufon.now()
-//--><!]]>
-</script>';
+				$arrMootools = deserialize($objLayout->mootools, true);
+				array_insert($arrMootools, 0, array('cufonnow'));
+				$objLayout->mootools = $arrMootools;
 			}
 		}
 	}
