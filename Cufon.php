@@ -36,7 +36,7 @@ class Cufon extends Frontend
 		if (is_array($arrStylesheets) && count($arrStylesheets))
 		{
 			$arrStyles = array();
-			$objStyles = $this->Database->execute("SELECT * FROM tl_style WHERE pid IN (" . implode(',', $arrStylesheets) . ") AND cufon='1' AND cufon_font!=''");
+			$objStyles = $this->Database->execute("SELECT * FROM tl_style WHERE pid IN (" . implode(',', $arrStylesheets) . ") AND invisible='' AND cufon='1' AND cufon_font!=''");
 			
 			while( $objStyles->next() )
 			{
@@ -63,7 +63,7 @@ class Cufon extends Frontend
 						}
 					}
 					
-					$arrStyles[] = "Cufon.replace('" . $objStyles->selector . "'" . (count($arrOptions) ? ', {'.implode(', ', $arrOptions).'}' : '') . ")";
+					$arrStyles[] = "Cufon.replace('" . $objStyles->selector . "'" . (count($arrOptions) ? ', {'.implode(', ', $arrOptions).'}' : '') . ");";
 				}
 			}
 			
@@ -71,7 +71,7 @@ class Cufon extends Frontend
 			{
 				$GLOBALS['TL_HEAD'][] = '<script type="text/javascript">
 <!--//--><![CDATA[//><!--
-' . implode("\n", $arrStyles) . ';
+' . implode("\n", $arrStyles) . '
 //--><!]]>
 </script>';
 				
@@ -89,7 +89,7 @@ class Cufon extends Frontend
 		
 		if ($row['cufon'])
 		{
-			$icon = '<div style="float:left; margin-top:-20px; padding: 2px 0 2px 20px; background:url(system/modules/cufon/html/cufon16.png) no-repeat left center">' . $GLOBALS['TL_LANG']['tl_style']['cufon'][0] . ' ' . (strlen($row['cufon_fontFamily']) ? '('.$GLOBALS['TL_LANG']['tl_style']['cufon_fontFamily'][0].': '.$row['cufon_fontFamily'].')' : '') . '</div>';
+			$icon = '<div style="' . (VERSION < 2.9 ? 'float:left; margin-top:-20px; ' : '') . 'line-height:20px; padding-left:20px; background:url(system/modules/cufon/html/cufon16.png) no-repeat left center">' . $GLOBALS['TL_LANG']['tl_style']['cufon'][0] . ' ' . (strlen($row['cufon_fontFamily']) ? '('.$GLOBALS['TL_LANG']['tl_style']['cufon_fontFamily'][0].': '.$row['cufon_fontFamily'].')' : '') . '</div>';
 		}
 		
 		return $icon.$this->StyleSheets->compileDefinition($row);
