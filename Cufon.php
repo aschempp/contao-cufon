@@ -90,7 +90,7 @@ class Cufon extends Frontend
 		
 		if ($row['cufon'])
 		{
-			$icon = '<div style="' . (VERSION < 2.9 ? 'float:left; margin-top:-20px; ' : '') . 'line-height:20px; padding-left:20px; background:url(system/modules/cufon/html/cufon16.png) no-repeat left center">' . $GLOBALS['TL_LANG']['tl_style']['cufon'][0] . ' ' . (strlen($row['cufon_fontFamily']) ? '('.$GLOBALS['TL_LANG']['tl_style']['cufon_fontFamily'][0].': '.$row['cufon_fontFamily'].')' : '') . '</div>';
+			$icon = '<div style="' . (version_compare(VERSION, '2.9', '<') ? 'float:left; margin-top:-20px; ' : '') . 'line-height:20px; padding-left:20px; background:url(system/modules/cufon/html/cufon16.png) no-repeat left center">' . $GLOBALS['TL_LANG']['tl_style']['cufon'][0] . ' ' . (strlen($row['cufon_fontFamily']) ? '('.$GLOBALS['TL_LANG']['tl_style']['cufon_fontFamily'][0].': '.$row['cufon_fontFamily'].')' : '') . '</div>';
 		}
 		
 		return $icon.$this->StyleSheets->compileDefinition($row);
