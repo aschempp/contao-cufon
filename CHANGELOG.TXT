@@ -1,5 +1,5 @@
 
-Version 1.1.0 (2011-??-==)
+Version 1.1.beta1 (2011-??-??)
 --------------------------
 - Added support for @font-face font types
 - Implemented moo-fontavailable to only load Cufon if the font is not available in the browser
