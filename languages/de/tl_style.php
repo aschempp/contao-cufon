@@ -31,6 +31,6 @@
  */
 $GLOBALS['TL_LANG']['tl_style']['cufon']			= array('Cufón anwenden', 'Eine Cufón-Schrift für diesen Style verwenden.');
 $GLOBALS['TL_LANG']['tl_style']['cufon_font']		= array('Schriftdatei', 'Wählen Sie die Javascript-Schrift-Datei.');
-$GLOBALS['TL_LANG']['tl_style']['cufon_fontFamily']	= array('Schriftart', 'Geben Sie den Namen der Schriftart ein, falls Sie mehrere verschiedene Cufón-Schriftarten verwenden.');
+$GLOBALS['TL_LANG']['tl_style']['cufon_fontFamily']	= array('Schriftart', 'Geben Sie den Namen der Schriftart ein, falls Sie @font-face oder mehrere verschiedene Cufón-Schriftarten verwenden.');
 $GLOBALS['TL_LANG']['tl_style']['cufon_hover']		= array('Hover-Elemente', 'Geben Sie eine kommagetrennte Liste von Elementen ein, welche :hover unterstützen sollen. Lassen Sie dies leer wenn Sie es nicht unbedingt benötigen!');
 

@@ -13,7 +13,7 @@
 
 CREATE TABLE `tl_style` (
   `cufon` char(1) NOT NULL default '',
-  `cufon_font` varchar(255) NOT NULL default '',
+  `cufon_font` blob NULL,
   `cufon_fontFamily` varchar(255) NOT NULL default '',
   `cufon_hover` varchar(255) NOT NULL default '',
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

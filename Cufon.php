@@ -35,15 +35,62 @@ class Cufon extends Frontend
 		
 		if (is_array($arrStylesheets) && count($arrStylesheets))
 		{
-			$arrStyles = array();
+			$arrCufon = array();
+			$arrFontFace = array();
 			$objStyles = $this->Database->execute("SELECT * FROM tl_style WHERE pid IN (" . implode(',', $arrStylesheets) . ") AND invisible='' AND cufon='1' AND cufon_font!=''");
 			
 			while( $objStyles->next() )
 			{
-				if (is_file(TL_ROOT . '/' . $objStyles->cufon_font))
+				$arrFonts = array();
+				$strCufon = false;
+				
+				$arrFiles = deserialize($objStyles->cufon_font, true);
+				foreach( $arrFiles as $font )
+				{
+					if (is_file(TL_ROOT . '/' . $font))
+					{
+						switch( pathinfo($font, PATHINFO_EXTENSION) )
+						{
+							case 'woff':
+								$arrFonts[] = 'url("'.$font.'") format("woff")';
+								break;
+								
+							case 'ttf':
+								$arrFonts[] = 'url("'.$font.'") format("truetype")';
+								break;
+								
+							case 'otf':
+								// @todo missing support for OTF files
+								break;
+								
+							case 'eot':
+								// Make sure eot definition is the topmost rule
+								array_insert($arrFonts, 0, array('url("'.$font.'");'."\n".'src: url("'.$font.'?iefix") format("eot")'));
+								break;
+								
+							case 'svg':
+								$arrFonts[] = 'url("'.$font.'#'.$objStyles->cufon_fontFamily.'") format("svg")';
+								break;
+								
+							case 'js':
+								$strCufon = $font;
+								break;
+						}
+					}
+				}
+				
+				if ($objStyles->cufon_fontFamily != '' && count($arrFonts))
+				{
+					$arrFontFace[$objStyles->cufon_fontFamily] = '@font-face {
+font-family: "' . $objStyles->cufon_fontFamily . '";
+src: ' . implode(",\n", $arrFonts) . ';
+}';
+				}
+				
+				if ($strCufon !== false)
 				{
 					$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/cufon/html/cufon.js';
-					$GLOBALS['TL_JAVASCRIPT'][] = $objStyles->cufon_font;
+					$GLOBALS['TL_JAVASCRIPT'][] = $strCufon;
 					
 					$arrOptions = array();
 					
@@ -64,21 +111,65 @@ class Cufon extends Frontend
 						}
 					}
 					
-					$arrStyles[] = "Cufon.replace('" . $objStyles->selector . "'" . (count($arrOptions) ? ', {'.implode(', ', $arrOptions).'}' : '') . ");";
+					$arrCufon[$objStyles->cufon_fontFamily][] = "Cufon.replace('" . $objStyles->selector . "'" . (count($arrOptions) ? ', {'.implode(', ', $arrOptions).'}' : '') . ");";
 				}
 			}
 			
-			if (count($arrStyles))
+			// Enable font face
+			$blnFontFace = count($arrFontFace) ? true : false;
+			
+			if ($blnFontFace)
 			{
-				$GLOBALS['TL_HEAD'][] = '<script type="text/javascript">
+				$GLOBALS['TL_HEAD'][] = '<style media="screen">
+' . implode("\n", $arrFontFace) . '
+</style>';
+			}
+			
+			if (count($arrCufon))
+			{
+				if ($blnFontFace)
+				{
+					$strBuffer = '<script type="text/javascript">
 <!--//--><![CDATA[//><!--
-' . implode("\n", $arrStyles) . '
+window.addEvent(\'load\', function() {';
+
+					foreach( $arrCufon as $font => $arrValues )
+					{
+						$strBuffer .= '
+if (!document.body.fontAvailable(\'' . $font . '\')) {
+' . implode("\n", $arrValues) . '
+}';
+					}
+
+					$strBuffer .= '});
 //--><!]]>
 </script>';
+
+					$GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/cufon/html/moo-fontavailable.js';
+					$GLOBALS['TL_HEAD'][] = $strBuffer;
+				}
+				else
+				{
+					$strImplode = array();
+					foreach( $arrCufon as $arrValues )
+					{
+						$arrImplode[] = implode("\n", $arrValues);
+					}
+					
+					$GLOBALS['TL_HEAD'][] = '<script type="text/javascript">
+<!--//--><![CDATA[//><!--
+' . implode("\n", $arrImplode) . '
+//--><!]]>
+</script>';
+				}
 				
-				$arrMootools = deserialize($objLayout->mootools, true);
-				array_insert($arrMootools, 0, array('cufonnow'));
-				$objLayout->mootools = $arrMootools;
+				// Using Cufon.now() does not make sense if we initialize on "load" event
+				if (!$blnFontFace)
+				{
+					$arrMootools = deserialize($objLayout->mootools, true);
+					array_insert($arrMootools, 0, array('cufonnow'));
+					$objLayout->mootools = $arrMootools;
+				}
 			}
 		}
 	}

@@ -54,7 +54,7 @@ $GLOBALS['TL_DCA']['tl_style']['fields']['cufon_font'] = array
 (
 	'label'				=> &$GLOBALS['TL_LANG']['tl_style']['cufon_font'],
 	'inputType'			=> 'fileTree',
-	'eval'				=> array('mandatory'=>true, 'fieldType'=>'radio', 'files'=>true, 'filesOnly'=>true, 'extensions'=>'js', 'tl_class'=>'clr'),
+	'eval'				=> array('mandatory'=>true, 'fieldType'=>'checkbox', 'files'=>true, 'filesOnly'=>true, 'extensions'=>'js,woff,ttf,otf,svg,eot', 'tl_class'=>'clr'),
 );
 
 $GLOBALS['TL_DCA']['tl_style']['fields']['cufon_fontFamily'] = array

@@ -31,6 +31,6 @@
  */
 $GLOBALS['TL_LANG']['tl_style']['cufon']			= array('Use cufón', 'Apply a cufón font for this style.');
 $GLOBALS['TL_LANG']['tl_style']['cufon_font']		= array('Font file', 'Select the appropriate javascript font file.');
-$GLOBALS['TL_LANG']['tl_style']['cufon_fontFamily']	= array('Font name', 'Please enter the font name if you use multiple cufón fonts at the same time.');
+$GLOBALS['TL_LANG']['tl_style']['cufon_fontFamily']	= array('Font name', 'Please enter the font name if you use @font-face or multiple cufón fonts at the same time.');
 $GLOBALS['TL_LANG']['tl_style']['cufon_hover']		= array('Hover elements', 'Enter a comma separated list of elements which should support :hover class. Leave this empty if you don\'t really need it for performance reason.');
 
