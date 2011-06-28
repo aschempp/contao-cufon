@@ -52,14 +52,15 @@ class Cufon extends Frontend
 						$arrOptions[] = "fontFamily: '" . $objStyles->cufon_fontFamily . "'";
 					}
 					
-					if (strlen($objStyles->cufon_hover))
+					if ($objStyles->cufon_hover != '')
 					{
 						$arrOptions[] = 'hover: true';
-						$arrElements = array_diff(trimsplit(',', $objStyles->cufon_hover), array('', 'a'));
+						$arrHover = trimsplit(',', $objStyles->cufon_hover);
+						$total = count($arrHover);
 						
-						if (count($arrElements))
+						if ($total > 0 && ($total > 1 || !in_array('a', $arrHover)))
 						{
-							$arrOptions[] = 'hoverables: { ' . implode(': true, ', $arrElements) . ': true }';
+							$arrOptions[] = 'hoverables: { ' . implode(': true, ', $arrHover) . ': true }';
 						}
 					}
 					

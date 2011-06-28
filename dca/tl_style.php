@@ -47,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_style']['fields']['cufon'] = array
 (
 	'label'				=> &$GLOBALS['TL_LANG']['tl_style']['cufon'],
 	'inputType'			=> 'checkbox',
-	'eval'				=> array('submitOnChange'=>true),
+	'eval'				=> array('submitOnChange'=>true, 'tl_class'=>'clr'),
 );
 
 $GLOBALS['TL_DCA']['tl_style']['fields']['cufon_font'] = array
