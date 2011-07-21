@@ -21,6 +21,7 @@
  * PHP version 5
  * @copyright  Andreas Schempp 2010
  * @author     Andreas Schempp <andreas@schempp.ch>
+ * @author     Leo Unglaub <leo.unglaub@iserv.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  * @version    $Id$
  */
@@ -33,4 +34,13 @@ $GLOBALS['TL_LANG']['tl_style']['cufon']			= array('Cufón anwenden', 'Eine Cuf�
 $GLOBALS['TL_LANG']['tl_style']['cufon_font']		= array('Schriftdatei', 'Wählen Sie die Javascript-Schrift-Datei.');
 $GLOBALS['TL_LANG']['tl_style']['cufon_fontFamily']	= array('Schriftart', 'Geben Sie den Namen der Schriftart ein, falls Sie @font-face oder mehrere verschiedene Cufón-Schriftarten verwenden.');
 $GLOBALS['TL_LANG']['tl_style']['cufon_hover']		= array('Hover-Elemente', 'Geben Sie eine kommagetrennte Liste von Elementen ein, welche :hover unterstützen sollen. Lassen Sie dies leer wenn Sie es nicht unbedingt benötigen!');
+$GLOBALS['TL_LANG']['tl_style']['cufon_options']	= array('Optionen', 'Hier können Sie zusätzliche Optionen an das Cufon Objekt übergeben. Eine vollständige Liste aller Möglichkeiten finden Sie hier: https://github.com/sorccu/cufon/wiki/API');
 
+
+/**
+ * Multitext Wizard
+ */
+$GLOBALS['TL_LANG']['tl_style']['cufon_o']			= 'Option';
+$GLOBALS['TL_LANG']['tl_style']['cufon_v']			= 'Wert';
+
+?>

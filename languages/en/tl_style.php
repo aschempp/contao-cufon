@@ -21,6 +21,7 @@
  * PHP version 5
  * @copyright  Andreas Schempp 2010
  * @author     Andreas Schempp <andreas@schempp.ch>
+ * @author     Leo Unglaub <leo.unglaub@iserv.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  * @version    $Id$
  */
@@ -33,4 +34,13 @@ $GLOBALS['TL_LANG']['tl_style']['cufon']			= array('Use cufón', 'Apply a cufón
 $GLOBALS['TL_LANG']['tl_style']['cufon_font']		= array('Font file', 'Select the appropriate javascript font file.');
 $GLOBALS['TL_LANG']['tl_style']['cufon_fontFamily']	= array('Font name', 'Please enter the font name if you use @font-face or multiple cufón fonts at the same time.');
 $GLOBALS['TL_LANG']['tl_style']['cufon_hover']		= array('Hover elements', 'Enter a comma separated list of elements which should support :hover class. Leave this empty if you don\'t really need it for performance reason.');
+$GLOBALS['TL_LANG']['tl_style']['cufon_options']	= array('options', 'You can add some additional options to the cufon object. For a complete reference see https://github.com/sorccu/cufon/wiki/API');
 
+
+/**
+ * Multitext Wizard
+ */
+$GLOBALS['TL_LANG']['tl_style']['cufon_o']			= 'option';
+$GLOBALS['TL_LANG']['tl_style']['cufon_v']			= 'value';
+
+?>

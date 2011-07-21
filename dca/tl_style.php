@@ -21,6 +21,7 @@
  * PHP version 5
  * @copyright  Andreas Schempp 2010
  * @author     Andreas Schempp <andreas@schempp.ch>
+ * @author     Leo Unglaub <leo.unglaub@iserv.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
  * @version    $Id$
  */
@@ -37,7 +38,7 @@ $GLOBALS['TL_DCA']['tl_style']['list']['sorting']['child_record_callback'] = arr
  */
 $GLOBALS['TL_DCA']['tl_style']['palettes']['__selector__'][]	= 'cufon';
 $GLOBALS['TL_DCA']['tl_style']['palettes']['default']			= str_replace(';{list_legend}', ',cufon;{list_legend}', $GLOBALS['TL_DCA']['tl_style']['palettes']['default']);
-$GLOBALS['TL_DCA']['tl_style']['subpalettes']['cufon']			= 'cufon_font,cufon_fontFamily,cufon_hover';
+$GLOBALS['TL_DCA']['tl_style']['subpalettes']['cufon']			= 'cufon_font,cufon_fontFamily,cufon_hover,cufon_options';
 
 
 /**
@@ -71,3 +72,11 @@ $GLOBALS['TL_DCA']['tl_style']['fields']['cufon_hover'] = array
 	'eval'				=> array('maxlength'=>255, 'tl_class'=>'w50'),
 );
 
+$GLOBALS['TL_DCA']['tl_style']['fields']['cufon_options'] = array
+(
+	'label'				=> &$GLOBALS['TL_LANG']['tl_style']['cufon_options'],
+	'inputType'			=> 'multitextWizard',
+	'eval'				=> array('tl_class'=>'clr', 'style'=>'width:100%', 'columns'=>array(array('name'=>'o', 'label'=>&$GLOBALS['TL_LANG']['tl_style']['cufon_o'], 'mandatory'=>true), array('name'=>'v', 'label'=>&$GLOBALS['TL_LANG']['tl_style']['cufon_v'], 'mandatory'=>true)))
+);
+
+?>

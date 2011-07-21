@@ -111,6 +111,27 @@ src: ' . implode(",\n", $arrFonts) . ';
 						}
 					}
 					
+					
+					// add additional options
+					$arrAdditionalOptions = deserialize($objStyles->cufon_options);
+					if (is_array($arrAdditionalOptions) && count($arrAdditionalOptions) > 0)
+					{
+						$arrValidAdditionalOptions = array
+						(
+							'autoDetect', 'color', 'fontSize', 'fontStretch', 'fontStyle', 'fontWeight', 'forceHitArea', 'ignoreClass', 'letterSpacing',
+							'modifyText', 'onAfterReplace', 'onBeforeReplace', 'selector', 'separate', 'softHyphens', 'textShadow', 'textTransform', 'trim'
+						);
+
+						foreach ($arrAdditionalOptions as $v)
+						{
+							// only add valid options
+							if (in_array($v[0], $arrValidAdditionalOptions))
+							{
+								$arrOptions[] = $v[0] . ': "' . $v[1] . '"';
+							}
+						}
+					}
+
 					$arrCufon[$objStyles->cufon_fontFamily][] = "Cufon.replace('" . $objStyles->selector . "'" . (count($arrOptions) ? ', {'.implode(', ', $arrOptions).'}' : '') . ");";
 				}
 			}
