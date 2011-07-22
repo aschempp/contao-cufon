@@ -1,13 +1,10 @@
-Version 1.2.0 (2011-07-15)
--------------------------
-- Add additional options to the cufon object
-
 Version 1.1.beta1 (2011-??-??)
 --------------------------
 - Added support for @font-face font types
 - Implemented moo-fontavailable to only load Cufon if the font is not available in the browser
 - Fixed issue with multiple hover elements including "a"
 - Fixed layout issues in Contao 2.10
+- Add additional options to the cufon object
 
 Version 1.0.1 (2010-11-09)
 --------------------------

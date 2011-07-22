@@ -19,7 +19,7 @@
  * Software Foundation website at http://www.gnu.org/licenses/.
  *
  * PHP version 5
- * @copyright  Andreas Schempp 2010
+ * @copyright  Andreas Schempp 2011
  * @author     Andreas Schempp <andreas@schempp.ch>
  * @author     Leo Unglaub <leo.unglaub@iserv.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
@@ -42,5 +42,3 @@ $GLOBALS['TL_LANG']['tl_style']['cufon_options']	= array('options', 'You can add
  */
 $GLOBALS['TL_LANG']['tl_style']['cufon_o']			= 'option';
 $GLOBALS['TL_LANG']['tl_style']['cufon_v']			= 'value';
-
-?>

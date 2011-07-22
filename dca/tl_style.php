@@ -19,7 +19,7 @@
  * Software Foundation website at http://www.gnu.org/licenses/.
  *
  * PHP version 5
- * @copyright  Andreas Schempp 2010
+ * @copyright  Andreas Schempp 2011
  * @author     Andreas Schempp <andreas@schempp.ch>
  * @author     Leo Unglaub <leo.unglaub@iserv.ch>
  * @license    http://opensource.org/licenses/lgpl-3.0.html
@@ -78,5 +78,3 @@ $GLOBALS['TL_DCA']['tl_style']['fields']['cufon_options'] = array
 	'inputType'			=> 'multitextWizard',
 	'eval'				=> array('tl_class'=>'clr', 'style'=>'width:100%', 'columns'=>array(array('name'=>'o', 'label'=>&$GLOBALS['TL_LANG']['tl_style']['cufon_o'], 'mandatory'=>true), array('name'=>'v', 'label'=>&$GLOBALS['TL_LANG']['tl_style']['cufon_v'], 'mandatory'=>true)))
 );
-
-?>
